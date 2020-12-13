@@ -1,0 +1,90 @@
+<script>
+
+
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', function(eventData) {
+        // gamma is the left-to-right tilt in degrees
+        console.log("data 1",eventData.gamma);
+        document.getElementById("prabhat").innerHTML=eventData.gamma;
+
+        // beta is the front-to-back tilt in degrees
+        console.log(eventData.beta);
+
+        // alpha is the compass direction the device is facing in degrees
+        console.log(eventData.alpha);
+    }, false);
+}
+
+
+
+if (window.DeviceMotionEvent) {
+    window.addEventListener('devicemotion', function(eventData) {   
+        // Acceleration
+        console.log(eventData.acceleration.x);
+        console.log(eventData.acceleration.y);
+        console.log(eventData.acceleration.z);
+        document.getElementById("sharma").innerHTML=eventData.rotationRate.alpha;
+
+
+        // Acceleration including gravity
+        console.log(eventData.accelerationIncludingGravity.x);
+        console.log(eventData.accelerationIncludingGravity.y);
+        console.log(eventData.accelerationIncludingGravity.z);
+
+        // Rotation rate
+        console.log(eventData.rotationRate.alpha);
+        console.log(eventData.rotationRate.beta);
+        console.log(eventData.rotationRate.gamma);
+    }, false);
+}
+
+
+
+var vibrate = navigator.vibrate || navigator.mozVibrate;
+
+// vibrate for 1 second
+vibrate(1000);
+
+// vibrate for 1 second, then pause for half, then vibrate for another 1 second
+vibrate([1000, 500, 2000]);
+
+
+
+
+
+var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
+
+function logBattery(battery) {
+    console.log(battery.level);
+    console.log(battery.charging);
+    console.log(dischargingTime);
+    document.getElementById("battery").innerHTML=battery.level;
+    document.getElementById("another").innerHTML=charging;
+    battery.addEventListener('chargingchange', function() {
+        console.log('Battery chargingchange event: ' + battery.charging);
+    }, false);
+}
+
+if (navigator.getBattery) {
+    navigator.getBattery().then(logBattery);
+} else if (battery) {
+    logBattery(battery);
+}
+
+
+
+
+
+</script>
+<div id="prabhat">
+
+</div>
+<div id="sharma">
+
+</div>
+<div id="battery">
+
+</div>
+<div id="another">
+
+</div>
