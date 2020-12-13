@@ -35,7 +35,7 @@ if (window.DeviceMotionEvent) {
         console.log(eventData.rotationRate.alpha);
         console.log(eventData.rotationRate.beta);
         console.log(eventData.rotationRate.gamma);
-        document.getElementById.innerHTML=
+        document.getElementById("testing").innerHTML=eventData.rotationRate.alpha;
     }, false);
 }
 
@@ -96,6 +96,8 @@ if (navigator.getBattery) {
 <div id="another">
 
 </div>
+<hr>
+<p>Apha rotation rate</p>
 <div id="testing">
 
 </div>
