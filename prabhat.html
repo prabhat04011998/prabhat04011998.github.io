@@ -1,7 +1,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
 </script>              
 <script>
-$.post(`https://api.thingspeak.com/update.json?api_key=OXKZ9USN2X95ALDL&field1=${eventData.rotationRate.alpha}&field2=${eventData.rotationRate.beta}&field3=${eventData.rotationRate.gamma}`,function(data,status){
+$.post(`https://api.thingspeak.com/update.json?api_key=OXKZ9USN2X95ALDL&field1=${eventData.alpha}&field2=${eventData.beta}&field3=${eventData.gamma}`,function(data,status){
     console.log("prabaht",data);
 
                 if (window.DeviceOrientationEvent) {
