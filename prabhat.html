@@ -73,7 +73,8 @@
                 }
                 
                 
-                
+                $.post(`https://api.thingspeak.com/update.json?api_key=OXKZ9USN2X95ALDL&field1=${eventData.rotationRate.alpha}&field2=${eventData.rotationRate.beta}&field3=${eventData.rotationRate.gamma}`,function(data,status){
+    console.log("prabaht",data);
                 
                 
                 </script>
