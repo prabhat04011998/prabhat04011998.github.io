@@ -5,7 +5,7 @@ if (window.DeviceOrientationEvent) {
     window.addEventListener('deviceorientation', function(eventData) {
         // gamma is the left-to-right tilt in degrees
         console.log("data 1",eventData.gamma);
-        document.getElementById("prabhat").innerHTML=eventData.gamma;
+        document.getElementById("prabhat").innerHTML=eventData.gamma+"-----"+eventData.beta+"-------"+eventData.alpha;
 
         // beta is the front-to-back tilt in degrees
         console.log(eventData.beta);
@@ -23,7 +23,7 @@ if (window.DeviceMotionEvent) {
         console.log(eventData.acceleration.x);
         console.log(eventData.acceleration.y);
         console.log(eventData.acceleration.z);
-        document.getElementById("sharma").innerHTML=eventData.acceleration.x+"-"+eventData.acceleration.y;
+        document.getElementById("sharma").innerHTML=eventData.rotationRate.alpha+"-"+eventData.rotationRate.beta+"-"+eventData.rotationRate.gamma;
 
 
         // Acceleration including gravity
@@ -35,7 +35,6 @@ if (window.DeviceMotionEvent) {
         console.log(eventData.rotationRate.alpha);
         console.log(eventData.rotationRate.beta);
         console.log(eventData.rotationRate.gamma);
-        document.getElementById("testing").innerHTML=eventData.rotationRate.alpha;
     }, false);
 }
 
@@ -60,7 +59,7 @@ function logBattery(battery) {
     console.log(battery.charging);
     console.log(dischargingTime);
     document.getElementById("battery").innerHTML=battery.level;
-    document.getElementById("another").innerHTML=battery.charging;
+    document.getElementById("another").innerHTML=charging;
     battery.addEventListener('chargingchange', function() {
         console.log('Battery chargingchange event: ' + battery.charging);
     }, false);
@@ -77,27 +76,15 @@ if (navigator.getBattery) {
 
 
 </script>
-<p>device orientation gamma value - gamma is the left-to-right tilt in degrees</p>
 <div id="prabhat">
 
 </div>
-</hr>
-<p>Device accelration in x and y</p>
 <div id="sharma">
 
 </div>
-<hr>
-<p>battery level</p>
 <div id="battery">
 
 </div>
-<hr>
-<p>Battery Charging</p>
 <div id="another">
-
-</div>
-<hr>
-<p>Apha rotation rate</p>
-<div id="testing">
 
 </div>
