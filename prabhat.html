@@ -7,6 +7,10 @@
 $.post(`https://api.thingspeak.com/update.json?api_key=OXKZ9USN2X95ALDL&field1=${eventData.rotationRate.alpha}&field2=${eventData.rotationRate.beta}&field3=${eventData.rotationRate.gamma}`,function(data,status){
         console.log("prabaht",data);
     })
+document.getElementById("alpha").innerHTML=eventData.rotationRate.alpha;
+document.getElementById("beta").innerHTML=eventData.rotationRate.beta;
+
+document.getElementById("gamma").innerHTML=eventData.rotationRate.gamma;
 
 const url="https://api.thingspeak.com/update.json?";
 const data={
@@ -111,3 +115,9 @@ if (navigator.getBattery) {
 
 
 </script>
+
+<div id="alpha"></div>
+<hr>
+<div id="beta"></div>
+<hr>
+<div id="gamma"></div>
