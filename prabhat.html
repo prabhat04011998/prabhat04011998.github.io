@@ -2,122 +2,117 @@
 			  src="https://code.jquery.com/jquery-3.5.1.js"
 			  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 			  crossorigin="anonymous"></script>
-<script>
+              <script>
 
 
-const url="https://api.thingspeak.com/update.json?";
-const data={
-    api_key:"OXKZ9USN2X95ALDL",
-    field1:100,
-    field2:100,
-    field3:100,
-};
-const otherparam={
-    headers:{
-        "content-type":"application/x-www-form-urlencoded"
-    },
-    body:data,
-    method:"POST"
-}
-fetch(url,otherparam).then(data=>{return data}).then(res=>{console.log(res)}).catch(error=>{console.log(error)});
-
-
-
-
-if (window.DeviceOrientationEvent) {
-    window.addEventListener('deviceorientation', function(eventData) {
-        // gamma is the left-to-right tilt in degrees
-        console.log("data 1",eventData.gamma);
-
-        // beta is the front-to-back tilt in degrees
-        console.log(eventData.beta);
-
-        // alpha is the compass direction the device is facing in degrees
-        console.log(eventData.alpha);
-
-        document.getElementById("mytable").appendChild(eventData.gamma);
-        document.getElementById("mytable").appendChild(eventData.beta);
-        document.getElementById("mytable").appendChild(eventData.alpha);
-
-
-    }, false);
-}
-
-
-
-if (window.DeviceMotionEvent) {
-    window.addEventListener('devicemotion', function(eventData) {   
-        // Acceleration
-        console.log(eventData.acceleration.x);
-        console.log(eventData.acceleration.y);
-        console.log(eventData.acceleration.z);
-        document.getElementById("mytable").appendChild(eventData.acceleration.x+"-"+eventData.acceleration.y+"-"+eventData.acceleration.z);
-
-
-
-        // Acceleration including gravity
-        console.log(eventData.accelerationIncludingGravity.x);
-        console.log(eventData.accelerationIncludingGravity.y);
-        console.log(eventData.accelerationIncludingGravity.z);
-        document.getElementById("mytable").appendChild(eventData.accelerationIncludingGravity.x+"-"+eventData.accelerationIncludingGravity.y+"-"+eventData.accelerationIncludingGravity.z);
-
-
-        // Rotation rate
-        console.log(eventData.rotationRate.alpha);
-        console.log(eventData.rotationRate.beta);
-        console.log(eventData.rotationRate.gamma);
-        $.post(`https://api.thingspeak.com/update.json?api_key=OXKZ9USN2X95ALDL&field1=${eventData.rotationRate.alpha}&field2=${eventData.rotationRate.beta}&field3=${eventData.rotationRate.gamma}`,function(data,status){
-        console.log("prabaht",data);
-    })
-document.getElementById("alpha").innerHTML=eventData.rotationRate.alpha;
-document.getElementById("beta").innerHTML=eventData.rotationRate.beta;
-
-document.getElementById("gamma").innerHTML=eventData.rotationRate.gamma;
-
-
-    }, false);
-}
-
-
-
-var vibrate = navigator.vibrate || navigator.mozVibrate;
-
-// vibrate for 1 second
-vibrate(1000);
-
-// vibrate for 1 second, then pause for half, then vibrate for another 1 second
-vibrate([1000, 500, 2000]);
-
-
-
-
-
-var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
-
-function logBattery(battery) {
-    console.log(battery.level);
-    console.log(battery.charging);
-    console.log(dischargingTime);
-    document.getElementById("battery").innerHTML=battery.level;
-    document.getElementById("another").innerHTML=charging;
-    battery.addEventListener('chargingchange', function() {
-    }, false);
-    document.getElementById("mytable").appendChild(+battery.level+"-"+battery.charging+"-"+dischargingTime);
-
-}
-
-if (navigator.getBattery) {
-    navigator.getBattery().then(logBattery);
-} else if (battery) {
-    logBattery(battery);
-}
+                if (window.DeviceOrientationEvent) {
+                    window.addEventListener('deviceorientation', function(eventData) {
+                        // gamma is the left-to-right tilt in degrees
+                        console.log("data 1",eventData.gamma);
+                        document.getElementById("prabhat").innerHTML=eventData.gamma;
+                
+                        // beta is the front-to-back tilt in degrees
+                        console.log(eventData.beta);
+                
+                        // alpha is the compass direction the device is facing in degrees
+                        console.log(eventData.alpha);
+                    }, false);
+                }
+                
+                
+                
+                if (window.DeviceMotionEvent) {
+                    window.addEventListener('devicemotion', function(eventData) {   
+                        // Acceleration
+                        console.log(eventData.acceleration.x);
+                        console.log(eventData.acceleration.y);
+                        console.log(eventData.acceleration.z);
+                        document.getElementById("sharma").innerHTML=eventData.acceleration.x+"-"+eventData.acceleration.y;
+                
+                
+                        // Acceleration including gravity
+                        console.log(eventData.accelerationIncludingGravity.x);
+                        console.log(eventData.accelerationIncludingGravity.y);
+                        console.log(eventData.accelerationIncludingGravity.z);
+                
+                        // Rotation rate
+                        console.log(eventData.rotationRate.alpha);
+                        console.log(eventData.rotationRate.beta);
+                        console.log(eventData.rotationRate.gamma);
+                        document.getElementById.innerHTML=
+                    }, false);
+                }
+                
+                
+                
+                var vibrate = navigator.vibrate || navigator.mozVibrate;
+                
+                // vibrate for 1 second
+                vibrate(1000);
+                
+                // vibrate for 1 second, then pause for half, then vibrate for another 1 second
+                vibrate([1000, 500, 2000]);
+                
+                
+                
+                
+                
+                var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
+                
+                function logBattery(battery) {
+                    console.log(battery.level);
+                    console.log(battery.charging);
+                    console.log(dischargingTime);
+                    document.getElementById("battery").innerHTML=battery.level;
+                    document.getElementById("another").innerHTML=battery.charging;
+                    battery.addEventListener('chargingchange', function() {
+                        console.log('Battery chargingchange event: ' + battery.charging);
+                    }, false);
+                }
+                
+                if (navigator.getBattery) {
+                    navigator.getBattery().then(logBattery);
+                } else if (battery) {
+                    logBattery(battery);
+                }
+                
+                
+                
+                
+                
+                </script>
+                <p>device orientation gamma value - gamma is the left-to-right tilt in degrees</p>
+                <div id="prabhat">
+                
+                </div>
+                </hr>
+                <p>Device accelration in x and y</p>
+                <div id="sharma">
+                
+                </div>
+                <hr>
+                <p>battery level</p>
+                <div id="battery">
+                
+                </div>
+                <hr>
+                <p>Battery Charging</p>
+                <div id="another">
+                
+                </div>
+                <div id="testing">
+                
+                </div>
 
 
 
-</script>
 
-<div id="alpha"></div>
-<hr>
-<div id="beta"></div>
-<hr>
-<div id="gamma"></div>
+
+
+
+
+
+
+<!-- $.post(`https://api.thingspeak.com/update.json?api_key=OXKZ9USN2X95ALDL&field1=${eventData.rotationRate.alpha}&field2=${eventData.rotationRate.beta}&field3=${eventData.rotationRate.gamma}`,function(data,status){
+    console.log("prabaht",data);
+}) -->
