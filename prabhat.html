@@ -5,13 +5,18 @@ if (window.DeviceOrientationEvent) {
     window.addEventListener('deviceorientation', function(eventData) {
         // gamma is the left-to-right tilt in degrees
         console.log("data 1",eventData.gamma);
-        document.getElementById("prabhat").innerHTML=eventData.gamma+"-----"+eventData.beta+"-------"+eventData.alpha;
 
         // beta is the front-to-back tilt in degrees
         console.log(eventData.beta);
 
         // alpha is the compass direction the device is facing in degrees
         console.log(eventData.alpha);
+
+        document.getElementById("mytable").appendChild('<tr><td>gamma is the left-to-right tilt in degrees </td><td>'+eventData.gamma+'</td></tr>');
+        document.getElementById("mytable").appendChild('<tr><td>beta is the front-to-back tilt in degrees </td><td>'+eventData.beta+'</td></tr>');
+        document.getElementById("mytable").appendChild('<tr><td>alpha is the compass direction the device is facing in degrees </td><td>'+eventData.alpha+'</td></tr>');
+
+
     }, false);
 }
 
@@ -23,18 +28,23 @@ if (window.DeviceMotionEvent) {
         console.log(eventData.acceleration.x);
         console.log(eventData.acceleration.y);
         console.log(eventData.acceleration.z);
-        document.getElementById("sharma").innerHTML=eventData.rotationRate.alpha+"-"+eventData.rotationRate.beta+"-"+eventData.rotationRate.gamma;
+        document.getElementById("mytable").appendChild('<tr><td>Acceleration</td><td>'+eventData.acceleration.x+"-"+eventData.acceleration.y+"-"+eventData.acceleration.z+'</td></tr>');
+
 
 
         // Acceleration including gravity
         console.log(eventData.accelerationIncludingGravity.x);
         console.log(eventData.accelerationIncludingGravity.y);
         console.log(eventData.accelerationIncludingGravity.z);
+        document.getElementById("mytable").appendChild('<tr><td>Acceleration including Gravity</td><td>'+eventData.accelerationIncludingGravity.x+"-"+eventData.accelerationIncludingGravity.y+"-"+eventData.accelerationIncludingGravity.z+'</td></tr>');
+
 
         // Rotation rate
         console.log(eventData.rotationRate.alpha);
         console.log(eventData.rotationRate.beta);
         console.log(eventData.rotationRate.gamma);
+        document.getElementById("mytable").appendChild('<tr><td>Rotation</td><td>'+eventData.rotationRate.alpha+"-"+eventData.rotationRate.beta+"-"+eventData.rotationRate.gamma+'</td></tr>');
+
     }, false);
 }
 
@@ -61,8 +71,9 @@ function logBattery(battery) {
     document.getElementById("battery").innerHTML=battery.level;
     document.getElementById("another").innerHTML=charging;
     battery.addEventListener('chargingchange', function() {
-        console.log('Battery chargingchange event: ' + battery.charging);
     }, false);
+    document.getElementById("mytable").appendChild('<tr><td>battery</td><td>'+battery.level+"-"+battery.charging+"-"+dischargingTime+'</td></tr>');
+
 }
 
 if (navigator.getBattery) {
@@ -76,15 +87,16 @@ if (navigator.getBattery) {
 
 
 </script>
-<div id="prabhat">
 
-</div>
-<div id="sharma">
+<table>
+    <thead>
+        <tr>
+            <th>Feature</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody id="mytable">
+        
+    </tbody>
 
-</div>
-<div id="battery">
-
-</div>
-<div id="another">
-
-</div>
+</table>
