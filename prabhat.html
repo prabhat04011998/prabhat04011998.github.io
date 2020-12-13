@@ -23,7 +23,7 @@ if (window.DeviceMotionEvent) {
         console.log(eventData.acceleration.x);
         console.log(eventData.acceleration.y);
         console.log(eventData.acceleration.z);
-        document.getElementById("sharma").innerHTML=eventData.rotationRate.alpha;
+        document.getElementById("sharma").innerHTML=eventData.acceleration.x+"-"+eventData.acceleration.y;
 
 
         // Acceleration including gravity
@@ -35,6 +35,7 @@ if (window.DeviceMotionEvent) {
         console.log(eventData.rotationRate.alpha);
         console.log(eventData.rotationRate.beta);
         console.log(eventData.rotationRate.gamma);
+        document.getElementById.innerHTML=
     }, false);
 }
 
@@ -59,7 +60,7 @@ function logBattery(battery) {
     console.log(battery.charging);
     console.log(dischargingTime);
     document.getElementById("battery").innerHTML=battery.level;
-    document.getElementById("another").innerHTML=charging;
+    document.getElementById("another").innerHTML=battery.charging;
     battery.addEventListener('chargingchange', function() {
         console.log('Battery chargingchange event: ' + battery.charging);
     }, false);
@@ -76,15 +77,25 @@ if (navigator.getBattery) {
 
 
 </script>
+<p>device orientation gamma value - gamma is the left-to-right tilt in degrees</p>
 <div id="prabhat">
 
 </div>
+</hr>
+<p>Device accelration in x and y</p>
 <div id="sharma">
 
 </div>
+<hr>
+<p>battery level</p>
 <div id="battery">
 
 </div>
+<hr>
+<p>Battery Charging</p>
 <div id="another">
+
+</div>
+<div id="testing">
 
 </div>
