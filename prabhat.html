@@ -2,7 +2,7 @@
 </script>              
 <script>
 $.post(`https://api.thingspeak.com/update.json?api_key=OXKZ9USN2X95ALDL&field1=${eventData.alpha}&field2=${eventData.beta}&field3=${eventData.gamma}`,function(data,status){
-    console.log("prabaht",data);
+    console.log("prabaht",data)});
 
                 if (window.DeviceOrientationEvent) {
                     window.addEventListener('deviceorientation', function(eventData) {
