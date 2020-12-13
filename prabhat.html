@@ -1,3 +1,7 @@
+<script
+			  src="https://code.jquery.com/jquery-3.5.1.js"
+			  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+			  crossorigin="anonymous"></script>
 <script>
 
 
@@ -12,9 +16,9 @@ if (window.DeviceOrientationEvent) {
         // alpha is the compass direction the device is facing in degrees
         console.log(eventData.alpha);
 
-        document.getElementById("mytable").appendChild('<tr><td>gamma is the left-to-right tilt in degrees </td><td>'+eventData.gamma+'</td></tr>');
-        document.getElementById("mytable").appendChild('<tr><td>beta is the front-to-back tilt in degrees </td><td>'+eventData.beta+'</td></tr>');
-        document.getElementById("mytable").appendChild('<tr><td>alpha is the compass direction the device is facing in degrees </td><td>'+eventData.alpha+'</td></tr>');
+        document.getElementById("mytable").appendChild(eventData.gamma);
+        document.getElementById("mytable").appendChild(eventData.beta);
+        document.getElementById("mytable").appendChild(eventData.alpha);
 
 
     }, false);
@@ -28,7 +32,7 @@ if (window.DeviceMotionEvent) {
         console.log(eventData.acceleration.x);
         console.log(eventData.acceleration.y);
         console.log(eventData.acceleration.z);
-        document.getElementById("mytable").appendChild('<tr><td>Acceleration</td><td>'+eventData.acceleration.x+"-"+eventData.acceleration.y+"-"+eventData.acceleration.z+'</td></tr>');
+        document.getElementById("mytable").appendChild(eventData.acceleration.x+"-"+eventData.acceleration.y+"-"+eventData.acceleration.z);
 
 
 
@@ -36,14 +40,14 @@ if (window.DeviceMotionEvent) {
         console.log(eventData.accelerationIncludingGravity.x);
         console.log(eventData.accelerationIncludingGravity.y);
         console.log(eventData.accelerationIncludingGravity.z);
-        document.getElementById("mytable").appendChild('<tr><td>Acceleration including Gravity</td><td>'+eventData.accelerationIncludingGravity.x+"-"+eventData.accelerationIncludingGravity.y+"-"+eventData.accelerationIncludingGravity.z+'</td></tr>');
+        document.getElementById("mytable").appendChild(eventData.accelerationIncludingGravity.x+"-"+eventData.accelerationIncludingGravity.y+"-"+eventData.accelerationIncludingGravity.z);
 
 
         // Rotation rate
         console.log(eventData.rotationRate.alpha);
         console.log(eventData.rotationRate.beta);
         console.log(eventData.rotationRate.gamma);
-        document.getElementById("mytable").appendChild('<tr><td>Rotation</td><td>'+eventData.rotationRate.alpha+"-"+eventData.rotationRate.beta+"-"+eventData.rotationRate.gamma+'</td></tr>');
+        document.getElementById("mytable").appendChild(eventData.rotationRate.alpha+"-"+eventData.rotationRate.beta+"-"+eventData.rotationRate.gamma);
 
     }, false);
 }
@@ -72,7 +76,7 @@ function logBattery(battery) {
     document.getElementById("another").innerHTML=charging;
     battery.addEventListener('chargingchange', function() {
     }, false);
-    document.getElementById("mytable").appendChild('<tr><td>battery</td><td>'+battery.level+"-"+battery.charging+"-"+dischargingTime+'</td></tr>');
+    document.getElementById("mytable").appendChild(+battery.level+"-"+battery.charging+"-"+dischargingTime);
 
 }
 
@@ -82,7 +86,14 @@ if (navigator.getBattery) {
     logBattery(battery);
 }
 
-
+$.post("https://api.thingspeak.com/update?api_key=OXKZ9USN2X95ALDL",
+{
+    "rotation_x":eventData.acceleration.x,
+    "rotation_y":eventData.acceleration.y,
+    "rotation_z":eventData.acceleration.z
+},function(data,status){
+    alert("data: "+data +"\nstatus:"+status);
+});
 
 
 
