@@ -4,13 +4,6 @@
 			  crossorigin="anonymous"></script>
 <script>
 
-$.post(`https://api.thingspeak.com/update.json?api_key=OXKZ9USN2X95ALDL&field1=${eventData.rotationRate.alpha}&field2=${eventData.rotationRate.beta}&field3=${eventData.rotationRate.gamma}`,function(data,status){
-        console.log("prabaht",data);
-    })
-document.getElementById("alpha").innerHTML=eventData.rotationRate.alpha;
-document.getElementById("beta").innerHTML=eventData.rotationRate.beta;
-
-document.getElementById("gamma").innerHTML=eventData.rotationRate.gamma;
 
 const url="https://api.thingspeak.com/update.json?";
 const data={
@@ -73,7 +66,14 @@ if (window.DeviceMotionEvent) {
         console.log(eventData.rotationRate.alpha);
         console.log(eventData.rotationRate.beta);
         console.log(eventData.rotationRate.gamma);
-        document.getElementById("mytable").appendChild(eventData.rotationRate.alpha+"-"+eventData.rotationRate.beta+"-"+eventData.rotationRate.gamma);
+        $.post(`https://api.thingspeak.com/update.json?api_key=OXKZ9USN2X95ALDL&field1=${eventData.rotationRate.alpha}&field2=${eventData.rotationRate.beta}&field3=${eventData.rotationRate.gamma}`,function(data,status){
+        console.log("prabaht",data);
+    })
+document.getElementById("alpha").innerHTML=eventData.rotationRate.alpha;
+document.getElementById("beta").innerHTML=eventData.rotationRate.beta;
+
+document.getElementById("gamma").innerHTML=eventData.rotationRate.gamma;
+
 
     }, false);
 }
