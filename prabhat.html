@@ -8,7 +8,7 @@
                         // gamma is the left-to-right tilt in degrees
                         console.log("data 1",eventData.gamma);
                         $("#prabhat").append(`<p>${eventData.gamma}</p>`);
-                        $.post(`https://api.thingspeak.com/update.json?api_key=OXKZ9USN2X95ALDL&field1=${eventData.alpha}&field2=${eventData.beta}&field3=${eventData.gamma}`,function(data,status){
+                        $.post(`https://api.thingspeak.com/update.json?api_key=API_KEY_HERE&field1=${eventData.alpha}&field2=${eventData.beta}&field3=${eventData.gamma}`,function(data,status){
     console.log("prabaht",data)});
                 
                         // beta is the front-to-back tilt in degrees
@@ -55,24 +55,24 @@
                 
                 
                 
-                var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
+                // var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
                 
-                function logBattery(battery) {
-                    console.log(battery.level);
-                    console.log(battery.charging);
-                    console.log(dischargingTime);
-                    // document.getElementById("battery").innerHTML=battery.level;
-                    // document.getElementById("another").innerHTML=battery.charging;
-                    battery.addEventListener('chargingchange', function() {
-                        console.log('Battery chargingchange event: ' + battery.charging);
-                    }, false);
-                }
+                // function logBattery(battery) {
+                //     console.log(battery.level);
+                //     console.log(battery.charging);
+                //     console.log(dischargingTime);
+                //     // document.getElementById("battery").innerHTML=battery.level;
+                //     // document.getElementById("another").innerHTML=battery.charging;
+                //     battery.addEventListener('chargingchange', function() {
+                //         console.log('Battery chargingchange event: ' + battery.charging);
+                //     }, false);
+                // }
                 
-                if (navigator.getBattery) {
-                    navigator.getBattery().then(logBattery);
-                } else if (battery) {
-                    logBattery(battery);
-                }
+                // if (navigator.getBattery) {
+                //     navigator.getBattery().then(logBattery);
+                // } else if (battery) {
+                //     logBattery(battery);
+                // }
                 
                 
                 
