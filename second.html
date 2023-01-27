@@ -8,13 +8,10 @@
 </head>
     <script>
   // Check if the request is coming from the allowed webpage
-  if (document.referrer === 'https://prabhat04011998.github.io/first.html') {
+  if (document.referrer !== 'https://prabhat04011998.github.io/first.html') {
     // If it is, display the protected webpage
-    document.getElementById("content").innerHTML = 'Welcome, you are now viewing the protected webpage.';
-  } else {
-    // If not, display an error message
-    document.getElementById("content").innerHTML = 'Access denied. You can only access this webpage by navigating from the allowed webpage.';
-  }
+     window.location.href="https://prabhat04011998.github.io/first.html";
+  } 
 </script>
 <body>
     <h3 id="content"> Hi it's my second page.</h3>
